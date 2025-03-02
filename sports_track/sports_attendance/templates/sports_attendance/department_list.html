@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department List</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* Add Department Button */
+        .add-btn {
+            display: block;
+            width: fit-content;
+            margin: 10px auto 20px;
+            padding: 10px 15px;
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .add-btn:hover {
+            background-color: #16a085;
+            transform: scale(1.05);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-size: 16px;
+        }
+
+        td {
+            color: #333;
+            font-size: 15px;
+        }
+
+        /* Hover Effect */
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Actions Column */
+        .actions a {
+            padding: 10px 15px; 
+            border-radius: 6px; 
+            text-decoration: none;
+            color: white; 
+            background: linear-gradient(to right, #6a11cb, #2575fc); 
+            font-size: 14px; 
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .actions a:hover {
+            color: #2980b9;
+        }
+
+        /* Responsive Table */
+        @media (max-width: 500px) {
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Department List</h2>
+
+    <a href="{% url 'department_create' %}" class="add-btn"> Add Department</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for department in departments %}
+                <tr>
+                    <td>{{ department.dept_name }}</td>
+                    <td class="actions">
+                        <a href="{% url 'department_update' department.pk %}"> Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
